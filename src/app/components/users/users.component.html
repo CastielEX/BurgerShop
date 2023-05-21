@@ -1,0 +1,36 @@
+<div
+  class="mx-[5%] mt-[50px] bg-[#c77600] rounded-[10px] flex items-center !h-[70px] justify-between max-[768px]:hidden"
+>
+  <span class="min-w-[200px] bg-black border border-black rounded-[10px] text-white text-center text-lg py-2 ml-[1.5%]"
+    >Username</span
+  >
+  <span class="mr-[10px] min-w-[200px] bg-black border border-black rounded-[10px] text-white text-center text-lg py-2"
+    >Role</span
+  >
+  <span class="min-w-[200px] bg-black border border-black rounded-[10px] text-white text-center text-lg py-2 mr-[1.5%]"
+    >E-mail</span
+  >
+</div>
+<div class="mx-[5%] mt-[20px] !text-lg bg-[#c77600] py-2 px-2 border border-[#c77600] rounded-[5px]">
+  <div *ngFor="let user of users" class="m-[10px] bg-black border border-black rounded-[15px] max-[768px]:h-[100px]">
+    <div class="md:flex-row items-center !h-[60px] justify-between hover:cursor-default xs:flex xs:flex-col">
+      <span class="block text-center min-w-[200px] text-white xs:mb-[5px] md:mb-0">
+        {{ user.username | titlecase }}
+      </span>
+      <button
+        mat-button
+        (click)="openDialog(this.user.id)"
+        [disabled]="userId === user.id"
+        class="flex mx-[20px] text-white max-[768px]:mb-[5px]"
+      >
+        <span type="text" class="text-center mr-[10px]">
+          {{ user.role | titlecase }}
+        </span>
+        <mat-icon *ngIf="userId !== user.id">edit</mat-icon>
+      </button>
+      <span class="text-white min-w-[200px] text-center">
+        {{ user.email }}
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.bordershadow:hover {
+  box-shadow: 0 0 18px rgba(232, 173, 10, 1);
+}
+
+.bordershadowmax:hover {
+  box-shadow: 0 0 12px rgba(232, 173, 10, 1);
+}
+
+.border-shadow-max-red:hover {
+  box-shadow: 0 0 24px rgb(158, 20, 20);
+}
+
+.btnOne {
+  padding: 2px 10px;
+  font-size: 10px;
+}
+
+.border {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+.borderBurger {
+  border: 3px solid rgb(232, 173, 10);
+  border-radius: 4px;
+}
+
+.form-error {
+  color: red;
+}
+
+.cart-del-line {
+  height: 2px;
+  display: block;
+  max-width: 870px;
+  margin: 20px auto;
+  background: #f8bb46;
+  border: none;
+}
+
+.numberSize {
+  display: inline-block;
+  width: 90px;
+  text-align: left;
+}
+
+.hovOpac {
+  opacity: 0.5;
+}
+
+.hovOpac:hover {
+  opacity: 1;
+  background-color: #dc9c252e;
+}
+
+.full-image {
+  max-width: 100%;
+  max-height: 100%;
+}

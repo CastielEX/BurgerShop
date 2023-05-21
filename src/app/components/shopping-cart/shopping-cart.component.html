@@ -1,0 +1,167 @@
+<div class="m-0 text-white bg-[#252121]">
+  <div class="px-20 pt-5">
+    <span class="flex justify-center font-bold text-4xl">Your Cart</span>
+    <button (click)="continueShoping()" class="flex font-semibold text-white text-lg">
+      <svg class="fill-current mr-2 text-white w-4" viewBox="0 0 448 512">
+        <path
+          d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
+        />
+      </svg>
+      Continue Shopping
+    </button>
+    <br />
+    <div class="p-7 border">
+      <div *ngIf="!this.total[0]" class="pb-10"></div>
+      <div *ngIf="this.total[0]" class="grid grid-cols-6 gap-5 m-0 font-bold text-lg text-center">
+        <div></div>
+        <div>NAME</div>
+        <div>QUANTITY</div>
+        <div>PRICE</div>
+        <div>TOTAL PRICE</div>
+        <div></div>
+        <div></div>
+      </div>
+      <hr class="cart-del-line" />
+      <br />
+      <div *ngIf="!this.total[0]" class="flex justify-center text-2xl font-bold">
+        <span>YOUR CART IS EMPTY</span>
+      </div>
+      <br />
+
+      <div *ngFor="let burger of total" class="grid grid-cols-6 gap-6 hovOpac bordershadow text-center">
+        <div class="pl-5 pt-5">
+          <div class="borderBurger full-image">
+            <img class="" src="{{ burger.url }}" alt="" />
+          </div>
+        </div>
+        <div>
+          <span class="text-base font-semibold"
+            ><br />
+            {{ burger.name }}</span
+          >
+          <br />
+          <span *ngFor="let burgername of burger.optional" class="text-sm font-semibold"
+            ><li>
+              <ul>
+                {{
+                  burgername.name
+                }}
+                -
+                {{
+                  burgername.price
+                }}
+                LEI
+                <button
+                  (click)="removeIngredients(burgername.id)"
+                  class="font-semibold hover:text-gray-700 text-black text-xs"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ffffff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                  </svg>
+                </button>
+              </ul></li
+          ></span>
+        </div>
+        <div>
+          <br />
+          <br />
+          <div>
+            <button (click)="btnMinus(burger.order)">
+              <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                <path
+                  d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                />
+              </svg>
+            </button>
+            <span class="text-base font-semibold pl-1 pr-1">{{ burger.quantity }}</span>
+            <button (click)="btnPlus(burger.order)">
+              <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                <path
+                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div>
+          <br />
+          <div>
+            <span class="text-base font-semibold"><br />{{ burger.price }} LEI</span>
+          </div>
+        </div>
+        <div>
+          <br />
+          <div>
+            <span class="text-base font-semibold"><br />{{ burger.shownPrice * burger.quantity }} LEI</span>
+          </div>
+        </div>
+        <div>
+          <br />
+          <br />
+          <div>
+            <button (click)="removeItem(burger.id)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div></div>
+      </div>
+      <hr class="cart-del-line" />
+      <div class="flex items-end flex-col"></div>
+
+      <div class="flex justify-end">
+        <div *ngIf="this.total[0]">
+          <span class="text-xl font-bold">ITEMS : {{ totalItems() }}</span> <br />
+          <span class="text-xl font-bold">TOTAL : {{ totalCost() }} LEI</span>
+        </div>
+      </div>
+      <br />
+      <div *ngIf="this.total[0]">
+        <button
+          id="btnCheckout"
+          (click)="removeAll()"
+          class="hover:bg-red-700 border-shadow-max-red text-white font-bold py-3 w-full rounded border"
+        >
+          REMOVE ALL
+        </button>
+      </div>
+      <br />
+      <div *ngIf="this.total[0]" class="flex flex-col">
+        <button
+          id="btnCheckout"
+          (click)="btnCheckout()"
+          class="hover:bg-yellow-600 bordershadowmax text-white font-bold py-3 px-20 rounded border"
+        >
+          CHECKOUT
+        </button>
+      </div>
+    </div>
+    <div *ngIf="this.total[0]" class="p-14"></div>
+    <div *ngIf="!this.total[0]" class="p-48"></div>
+  </div>
+</div>

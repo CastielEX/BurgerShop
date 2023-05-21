@@ -1,0 +1,62 @@
+<div class="py-[20px] px-[5px] mx-[2%] text-white">
+  <div
+    class="flex !justify-around p-[3%] bg-black/[0.95] mb-[20px]"
+    *ngFor="let burger of burgers"
+    [id]="this.burger.name"
+  >
+    <div class="w-[50%] flex flex-col max-[640px]:hidden self-center">
+      <img [src]="burger.url" class="w-[100%] mb-[-25px] max-h-[450px] md:block" />
+      <div class="md:!pt-0 md:!pl-[40%] xl:!text-4xl mt-[20px]">
+        <span
+          class="bg-black/70 drop-shadow-[0_10px_30px_#fef08a] text-center py-[5px] sm:px-[5px] sm:text-[20px] sm:bottom-[50%] md:bottom-0 lg:text-[30px] xl:text-[40px] xl:px-[10px] max-[768px]:hidden"
+        >
+          {{ burger.shownPrice }} Lei
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col xs:ml-0 sm:ml-[20px]">
+      <div
+        class="flex flex-col xs:p-[10px] max-[640px]:p-[5px] max-[640px]:text-center xs:w-[350px] md:h-[40vh] sm:text-[12px] md:p-[10px] lg:w-[400px] lg:text-[16px] lg:min-h-[50vh] lg:p-[20px] bg-black/90"
+      >
+        <div>
+          <span>Burger name:</span>
+          <h1 class="sm:!mb-0">
+            {{ burger.name | titlecase }}
+          </h1>
+          <hr class="mb-[10px]" />
+          <span>Ingredients:</span>
+          <h3 class="flex flex-wrap mb-[10px] sm:!mb-0 lg:!mb-[5px] max-[640px]:inline">
+            {{ burger.baseArray | titlecase }}
+          </h3>
+        </div>
+        <hr *ngIf="burger.optionalIngredients[0]" class="mb-[10px]" />
+        <div>
+          <span *ngIf="burger.optionalIngredients[0]" class="block">Optionals: </span>
+          <div *ngFor="let optional of burger.optionalIngredients" class="text-justify">
+            <label>
+              <input
+                type="checkbox"
+                class="mb-[10px]"
+                [id]="optional.id"
+                [(ngModel)]="selected"
+                (change)="selectedCheckbox(this.burger, optional.id, optional.name, optional.price)"
+                [name]="'optionalIngredient' + optional.id"
+              />
+              {{ optional.name | titlecase }}
+            </label>
+          </div>
+        </div>
+        <hr class="min-[768px]:hidden" />
+        <div class="min-[768px]:hidden">
+          <span>Price: </span><span>{{ burger.shownPrice }} Lei</span>
+        </div>
+      </div>
+      <button
+        (click)="toCart(this.burger)"
+        class="text-black border border-[#c77600] bg-[#c77600] xs:rounded-sm xs:mt-0 xs:leading-4 xs:text-sm self-center md:mt-[-42.2px] xs:w-[100%] md:leading-10 md:text-lg md:rounded-b-xl lg:leading-[60px] lg:text-2xl"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title class="text-center xs:text-md md:text-xl">Pick a Role:</h1>
+<div mat-dialog-content class="!pb-0">
+  <div class="flex flex-row justify-around">
+    <div class="items-center mb-4 w-[150px]" (change)="onChange($event)">
+      <input id="admin" value="admin" type="radio" name="role" class="w-4 h-4" />
+      <label for="admin" class="ml-2 text-black xs:text-md md:text-xl">Admin</label>
+    </div>
+    <div class="items-center mb-4 w-[150px]" (change)="onChange($event)">
+      <input id="customer" value="customer" type="radio" name="role" class="w-4 h-4" />
+      <label for="customer" class="ml-2 text-black xs:text-md md:text-xl">Customer</label>
+    </div>
+  </div>
+</div>
+<button
+  mat-dialog-close
+  (click)="onSubmit()"
+  class="bg-[#c77600] xs:text-md xs:leading-[30px] xs:mb-[5%] xs:ml-[10%] md:text-xl md:leading-[60px] md:m-[10%] text-white w-[80%] border rounded-[5px] align-center"
+>
+  Edit
+</button>

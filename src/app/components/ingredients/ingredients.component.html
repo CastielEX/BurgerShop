@@ -1,0 +1,72 @@
+<div class="p-5 md:p-16 ingredients w-full relative">
+  <div class="hidden lg:flex justify-around uppercase">
+    <div
+      class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4"
+    >
+      Name
+    </div>
+    <div
+      class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4"
+    >
+      Image
+    </div>
+    <div
+      class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4"
+    >
+      Price
+    </div>
+    <div
+      class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4"
+    >
+      Grams
+    </div>
+    <div
+      class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4"
+    >
+      Category
+    </div>
+  </div>
+
+  <div class="bg-black mb-12" *ngFor="let ingredient of _ingredientsService.allIngredients; let i = index">
+    <div class="lg:flex justify-around pt-[1.5rem]">
+      <div
+        class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4 m-[2rem] border-t-[1px] border-t-solid border-t-[#fff] flex justify-center items-center shadow-[0_7px_12px_#c77600] uppercase"
+      >
+        {{ ingredient.name }}
+      </div>
+      <div
+        class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4 m-[2rem] border-t-[1px] border-t-solid border-t-[#fff] flex justify-center items-center shadow-[0_7px_12px_#c77600] uppercase"
+      >
+        <img src="{{ ingredient.url }}" alt="" />
+      </div>
+      <div
+        class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4 m-[2rem] border-t-[1px] border-t-solid border-t-[#fff] flex justify-center items-center shadow-[0_7px_12px_#c77600]"
+      >
+        {{ ingredient.price }} lei
+      </div>
+      <div
+        class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4 m-[2rem] border-t-[1px] border-t-solid border-t-[#fff] flex justify-center items-center shadow-[0_7px_12px_#c77600]"
+      >
+        {{ ingredient.grams }} gr
+      </div>
+      <div
+        class="shadow-[0_5px_15px_rgba(0, 0, 0, 0.35)] w-[19%] text-[#c77600] mt-[1rem] mx-0 mb-[4rem] text-[1.5rem] font-black bg-black text-center rounded-[1rem] min-w-[120px] p-[1rem] leading-4 m-[2rem] border-t-[1px] border-t-solid border-t-[#fff] flex justify-center items-center shadow-[0_7px_12px_#c77600] uppercase"
+      >
+        {{ ingredient.category }}
+      </div>
+    </div>
+
+    <div class="buttons flex justify-center p-10">
+      <button class="m-[0.5rem]" (click)="openEdit(ingredient.id)">
+        <mat-icon class="text-[#c77600] scale-150">edit</mat-icon>
+      </button>
+      <button class="m-[0.5rem]" (click)="deleteDialog(ingredient.id)">
+        <mat-icon class="text-[#c77600] scale-150">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <button class="fixed bottom-6 right-6 add-button plus-button" mat-button (click)="openDialog()">
+    <mat-icon class="scale-150 text-[#c77600]">add_circle</mat-icon>
+  </button>
+</div>

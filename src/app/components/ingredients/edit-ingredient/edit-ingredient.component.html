@@ -1,0 +1,74 @@
+<h1 mat-dialog-title class="uppercase text-center">Edit Ingredient</h1>
+<div mat-dialog-content>
+  <form [formGroup]="ingredientForm">
+    <div class="my-[1rem] mx-0">
+      <label class="label">Name</label>
+      <input
+        class="w-[100%] border-b-[1px] border-solid border-b-[rgba(143, 143, 143, 0.89)] text-black text-[1.5rem] focus:border-b-[1px] focus:border-solid focus:border-b-[#c77600] focus:outline-none"
+        type="text"
+        formControlName="name"
+      />
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('name')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('name')?.errors?.['required']">Name is required</small>
+      </div>
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('name')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('name')?.errors?.['pattern']">Only letters allowed</small>
+      </div>
+    </div>
+    <div class="my-[1rem] mx-0">
+      <label>Price</label>
+      <input
+        class="w-[100%] border-b-[1px] border-solid border-b-[rgba(143, 143, 143, 0.89)] text-black text-[1.5rem] focus:border-b-[1px] focus:border-solid focus:border-b-[#c77600] focus:outline-none"
+        type="text"
+        formControlName="price"
+      />
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('price')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('price')?.errors?.['required']">Price is required</small>
+      </div>
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('price')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('price')?.errors?.['pattern']">Only numbers allowed</small>
+      </div>
+    </div>
+    <div class="my-[1rem] mx-0">
+      <label>Grams</label>
+      <input
+        class="w-[100%] border-b-[1px] border-solid border-b-[rgba(143, 143, 143, 0.89)] text-black text-[1.5rem] focus:border-b-[1px] focus:border-solid focus:border-b-[#c77600] focus:outline-none"
+        type="text"
+        formControlName="grams"
+      />
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('grams')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('grams')?.errors?.['required']">Grams are required</small>
+      </div>
+      <div class="text-red-500 m-[10px] text-left" *ngIf="ingredientForm.get('grams')?.invalid && !submitted">
+        <small *ngIf="ingredientForm.get('grams')?.errors?.['pattern']">Only numbers allowed</small>
+      </div>
+    </div>
+    <div class="my-[1rem] mx-0">
+      <mat-form-field appearance="fill" class="w-full text-xl">
+        <mat-label>Select a category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="bun">Bun</mat-option>
+          <mat-option value="meat">Meat</mat-option>
+          <mat-option value="sauce">Sauce</mat-option>
+          <mat-option value="cheese">Cheese</mat-option>
+          <mat-option value="toppings">Toppings</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="my-5">
+      <input class="w-[100%]" type="file" formControlName="url" (change)="getNewImage($event)" />
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="dialogButton">
+  <button
+    mat-raised-button
+    color="primary"
+    class="uppercase text-2xl text-center py-1 rounded px-8 disabled:bg-[#b6b6b6] bg-black text-white"
+    mat-dialog-close
+    [disabled]="ingredientForm.invalid"
+    (click)="editIngredient()"
+  >
+    Edit
+  </button>
+</div>

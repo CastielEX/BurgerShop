@@ -1,0 +1,69 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.form-error {
+  color: red;
+}
+
+button:disabled {
+  background-color: gray;
+} /*# sourceMappingURL=login.component.css.map */
+
+.borderBurger {
+  border: 3px solid rgb(232, 173, 10);
+  border-radius: 4px;
+}
+
+button:disabled {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.border {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+.labelBorder {
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.cart-del-line {
+  height: 2px;
+  display: block;
+  max-width: 850px;
+  margin: 20px auto;
+  background: #f8bb46;
+  border: none;
+}
+
+.bordershadow:hover {
+  box-shadow: 0 0 18px rgba(232, 173, 10, 1);
+}
+
+.bordershadowmax:hover {
+  box-shadow: 0 0 12px rgba(232, 173, 10, 1);
+}
+
+.border-shadow-max-red:hover {
+  box-shadow: 0 0 24px rgb(158, 20, 20);
+}
+
+select.solid {
+  background: #222;
+}
+
+.hovOpac {
+  opacity: 0.5;
+}
+
+.hovOpac:hover {
+  opacity: 1;
+  background-color: #dc9c252e;
+}
+
+// .bgBlack {
+//   background-color: rgba(20, 20, 20, 0.200);
+// }

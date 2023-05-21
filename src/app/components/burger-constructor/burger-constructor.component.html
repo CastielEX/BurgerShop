@@ -1,0 +1,183 @@
+<div class="bg-[rgba(0,0,0,0.9)] py-12 px-[20%] min-h-[100vh] flex justify-center items-start text-white md:flex">
+  <div>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">1.Bun</h1>
+    <app-bun></app-bun>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">2.Meat</h1>
+    <app-meat></app-meat>
+    <button class="ml-[5.5rem] mt-[-20px]" mat-raised-button (click)="addMeat()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">3.bottom sauce</h1>
+    <app-bottom-souce></app-bottom-souce>
+    <button class="ml-[5.5rem] mt-[-20px]" mat-raised-button (click)="addBottomSauce()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">4.top sauce</h1>
+    <app-top-souce></app-top-souce>
+    <button class="ml-[5.5rem] mt-[-20px]" mat-raised-button (click)="addTopSauce()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">4.Cheese</h1>
+    <app-cheese></app-cheese>
+    <button class="ml-[5.5rem] mt-[-20px]" mat-raised-button (click)="addCheese()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">5.Topping</h1>
+    <app-toppings></app-toppings>
+    <button class="ml-[5.5rem] mt-[-20px]" mat-raised-button (click)="addTopping()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+    <h1 class="font-bold mt-4 text-yellow-400 uppercase">6.Burger name</h1>
+    <input
+      class="text-black p-4 border-[3px] border-[#f8bb46]"
+      type="text"
+      placeholder="Crafed Burger"
+      [(ngModel)]="burgerName"
+    />
+
+    <div class="text-white text-base mt-6 pt-6 border-t-[3px] border-[#f8bb46]">
+      <div *ngFor="let bun of buns">
+        <span class="font-extrabold uppercase">{{ bun.name }}</span> :
+        <span class="text-[#f8bb46]">{{ bun.price }}</span> lei ({{ bun.grams }}
+        gr)
+      </div>
+      <div *ngFor="let meat of meats">
+        <span class="font-extrabold uppercase">{{ meat.name }}</span> :
+        <span class="text-[#f8bb46]">{{ meat.price }}</span> lei ({{ meat.grams }}
+        gr)
+      </div>
+      <div *ngFor="let sauce of bottomSauces">
+        <div *ngIf="sauce.name !== '-'">
+          <span class="font-extrabold uppercase">{{ sauce.name }}</span> :
+          <span class="text-[#f8bb46]">{{ sauce.price }}</span> lei ({{ sauce.grams }}
+          gr)
+        </div>
+      </div>
+      <div *ngFor="let sauce of topSauces">
+        <div *ngIf="sauce.name !== '-'">
+          <span class="font-extrabold uppercase">{{ sauce.name }}</span> :
+          <span class="text-[#f8bb46]">{{ sauce.price }}</span> lei ({{ sauce.grams }}
+          gr)
+        </div>
+      </div>
+      <div *ngFor="let cheese of cheeses">
+        <div *ngIf="cheese.name !== '-'">
+          <span class="font-extrabold uppercase">{{ cheese.name }}</span> :
+          <span class="text-[#f8bb46]">{{ cheese.price }}</span> lei ({{ cheese.grams }}
+          gr)
+        </div>
+      </div>
+      <div *ngFor="let topping of toppings">
+        <div *ngIf="topping.name !== '-'">
+          <span class="font-extrabold uppercase">{{ topping.name }}</span> :
+          <span class="text-[#f8bb46]">{{ topping.price }}</span> lei ({{ topping.grams }}
+          gr)
+        </div>
+      </div>
+      <div class="text-2xl my-10 mx-0">
+        <span class="font-extrabold uppercase"> Total</span> :
+        <span class="text-[#f8bb46]"
+          >{{ +bunsPrice + +meatsPrice + +bottomSaucesPrice + +topSaucesPrice + +cheesesPrice + +toppingsPrice }}
+        </span>
+        lei ({{ +bunsGrams + +meatsGrams + +bottomSaucesGrams + +topSaucesGrams + +cheesesGrams + +toppingsGrams }}
+        gr)
+      </div>
+      <div
+        class="cursor-pointer w-[13.8rem] h-8 p-[1.2rem] flex justify-center items-center font-normal rounded-[3px] uppercase my-5 mx-0 bg-[#f8bb46]"
+        (click)="addToCart()"
+      >
+        Add to cart
+      </div>
+      <div
+        class="cursor-pointer w-[13.8rem] h-8 p-[1.2rem] flex justify-center items-center font-normal rounded-[3px] uppercase my-5 mx-0 bg-white text-[#f8bb46]"
+        (click)="startScratch()"
+      >
+        Start from scratch
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-[-30px] my-2.5 w-[50vw] flex justify-center lg:flex hidden lg:pl-36">
+    <div>
+      <div class="relative">
+        <img class="w-60" src="../../../assets/images/ingredients/bun.svg" alt="" />
+        <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+        <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">brioche bun</p>
+      </div>
+      <div class="relative" *ngFor="let meat of meats; let i = index">
+        <img class="w-60" src="{{ meat.url }}" alt="" />
+        <div *ngIf="i % 2 === 0">
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">{{ meat.name }}</p>
+        </div>
+        <div *ngIf="i % 2 !== 0">
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">{{ meat.name }}</p>
+        </div>
+      </div>
+      <div class="relative" *ngFor="let sauce of bottomSaucesPics; let i = index">
+        <img class="w-60" *ngIf="sauce.name !== '-'" src="{{ sauce.url }}" alt="" />
+        <div *ngIf="(meatsLength + i) % 2 === 0 && sauce.name !== '-'">
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">{{ sauce.name }}</p>
+        </div>
+        <div *ngIf="(meatsLength + i) % 2 !== 0 && sauce.name !== '-'">
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">{{ sauce.name }}</p>
+        </div>
+      </div>
+      <div class="relative" *ngFor="let sauce of topSaucesPics; let i = index">
+        <img class="w-60" *ngIf="sauce.name !== '-'" src="{{ sauce.url }}" alt="" />
+        <div *ngIf="(meatsLength + bottomSauceLength + i) % 2 === 0 && sauce.name !== '-'">
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">{{ sauce.name }}</p>
+        </div>
+        <div *ngIf="(meatsLength + bottomSauceLength + i) % 2 !== 0 && sauce.name !== '-'">
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">{{ sauce.name }}</p>
+        </div>
+      </div>
+      <div class="relative" *ngFor="let cheese of cheesesPics; let i = index">
+        <img class="w-60" *ngIf="cheese.name !== '-'" src="{{ cheese.url }}" alt="" />
+        <div *ngIf="(meatsLength + bottomSauceLength + topSauceLength + i) % 2 === 0 && cheese.name !== '-'">
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">{{ cheese.name }}</p>
+        </div>
+        <div *ngIf="(meatsLength + bottomSauceLength + topSauceLength + i) % 2 !== 0 && cheese.name !== '-'">
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">{{ cheese.name }}</p>
+        </div>
+      </div>
+      <div class="relative" *ngFor="let topping of toppingsPics; let i = index">
+        <img class="w-60" *ngIf="topping.name !== '-'" src="{{ topping.url }}" alt="" />
+        <div
+          *ngIf="
+            (meatsLength + bottomSauceLength + topSauceLength + cheesesLength + i) % 2 === 0 && topping.name !== '-'
+          "
+        >
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">{{ topping.name }}</p>
+        </div>
+        <div
+          *ngIf="
+            (meatsLength + bottomSauceLength + topSauceLength + cheesesLength + i) % 2 !== 0 && topping.name !== '-'
+          "
+        >
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">{{ topping.name }}</p>
+        </div>
+      </div>
+      <div class="relative">
+        <img class="w-60" src="../../../assets/images/ingredients/bun-bottom.svg" alt="" />
+        <div *ngIf="(meatsLength + bottomSauceLength + topSauceLength + cheesesLength + toppingsLength) % 2 === 0">
+          <img class="w-14 absolute top-8 right-[-4rem]" src="../../../assets/images/arrow-right.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-6 right-[-8rem]">bottom bun</p>
+        </div>
+        <div *ngIf="(meatsLength + bottomSauceLength + topSauceLength + cheesesLength + toppingsLength) % 2 !== 0">
+          <img class="w-14 absolute top-12 left-[-4rem]" src="../../../assets/images/arrow-left.svg" alt="" />
+          <p class="w-8 absolute text-white font-extrabold top-16 left-[-9.5rem]">bottom bun</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

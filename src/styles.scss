@@ -1,0 +1,25 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+html,
+body {
+  height: 100%;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.deleteItem {
+  img {
+    width: 1.5rem;
+    max-width: 100%;
+    min-width: 15px;
+  }
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  color: white;
+  border: 2px solid #f8bb46;
+}

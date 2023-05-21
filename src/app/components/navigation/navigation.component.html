@@ -1,0 +1,84 @@
+<div
+  class="hidden lg:flex shadow-[0_16px_83px_rgba(225,255,255)] place-items-center w-full"
+  *ngIf="userRole === 'admin' || userRole === 'customer'"
+>
+  <section class="relative mx-auto w-full">
+    <nav class="flex justify-between bg-black text-white w-full">
+      <div class="px-5 xl:px-12 py-6 flex w-full items-center w-full uppercase text-[2rem]">
+        <a routerLink="/" class="text-3xl font-bold font-heading mx-14"
+          ><img class="w-[4rem] scale-150" src="../../../assets/images/burger-logo.png"
+        /></a>
+        <ul class="md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+          <li *ngIf="userRole === 'admin'"><a routerLink="users">Users</a></li>
+          <li *ngIf="userRole === 'admin'"><a routerLink="burgers">Burgers</a></li>
+          <li *ngIf="userRole === 'admin'"><a routerLink="ingredients">Ingredients</a></li>
+          <li *ngIf="userRole === 'customer'"><a routerLink="menu">Menu</a></li>
+          <li *ngIf="userRole === 'customer'"><a routerLink="burger-constructor">Do it Yourself</a></li>
+        </ul>
+        <div class="xl:flex items-center space-x-10 mx-10 items-center relative" *ngIf="userRole === 'customer'">
+          <a class="hover:text-gray-200" routerLink="cart"><mat-icon class="scale-150">shopping_cart</mat-icon></a>
+          <div
+            class="absolute bg-[#f8bb46] text-black font-bold flex justify-center items-center rounded-[50%] w-[25px] h-[25px] rounded-[70%] text-[15px] top-[-16px] right-[-17px] p-[7px]"
+          >
+            {{ items }}
+          </div>
+        </div>
+        <div class="xl:flex items-center space-x-10 items-center">
+          <a routerLink="login" (click)="logOut()"><mat-icon class="scale-150">exit_to_app</mat-icon></a>
+        </div>
+      </div>
+    </nav>
+  </section>
+</div>
+
+<div
+  *ngIf="userRole === 'admin' || userRole === 'customer'"
+  class="lg:hidden shadow-[0_16px_83px_rgba(225,255,255)] bg-black h-16 flex justify-between px-8 items-center w-full"
+>
+  <div class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="text-white scale-150">menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/">
+        <span class="logo-mobile flex items-center w-[30px]">
+          <img src="../../../assets/images/burger-logo.png" />
+          <span class="text-xl mx-2.5">Home</span>
+        </span>
+      </button>
+      <button mat-menu-item *ngIf="userRole === 'customer'" routerLink="menu">
+        <mat-icon> restaurant_menu</mat-icon>
+        <span class="text-xl">Menu</span>
+      </button>
+      <button mat-menu-item *ngIf="userRole === 'customer'" routerLink="burger-constructor">
+        <mat-icon>touch_app</mat-icon>
+        <span class="text-xl">Do it Yourself</span>
+      </button>
+      <button mat-menu-item *ngIf="userRole === 'admin'" routerLink="users">
+        <mat-icon>supervisor_account</mat-icon>
+        <span class="text-xl">Users</span>
+      </button>
+      <button mat-menu-item *ngIf="userRole === 'admin'" routerLink="burgers">
+        <mat-icon> fastfood</mat-icon>
+        <span class="text-xl">Burgers</span>
+      </button>
+      <button mat-menu-item *ngIf="userRole === 'admin'" routerLink="ingredients">
+        <mat-icon> beenhere</mat-icon>
+        <span class="text-xl">Ingredients</span>
+      </button>
+    </mat-menu>
+  </div>
+  <div class="flex">
+    <div *ngIf="userRole === 'customer'" class="relative mx-1.5">
+      <a class="hover:text-gray-200" routerLink="cart"><mat-icon class="text-white">shopping_cart</mat-icon></a>
+      <div
+        class="absolute bg-[#f8bb46] text-black font-bold flex justify-center items-center rounded-[50%] w-[15px] h-[15px] top-0 right-0 p-[3px] text-[11px]"
+      >
+        {{ [items] }}
+      </div>
+    </div>
+    <div class="xl:flex items-center space-x-10 items-center">
+      <a routerLink="login" (click)="logOut()"><mat-icon class="text-white">exit_to_app</mat-icon></a>
+    </div>
+  </div>
+</div>

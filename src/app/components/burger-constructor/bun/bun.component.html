@@ -1,0 +1,10 @@
+<div *ngFor="let bun of burgerConstruct.buns">
+  <mat-form-field appearance="fill">
+    <mat-label>Bun</mat-label>
+    <mat-select [value]="bun.name" (valueChange)="changeBun(bun.index, $event)">
+      <mat-option [value]="ingredient.name" *ngFor="let ingredient of ingredients"
+        >{{ ingredient.name | titlecase }} ({{ ingredient.price }}lei)</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>

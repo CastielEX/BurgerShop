@@ -1,0 +1,19 @@
+<h1 mat-dialog-title></h1>
+<div mat-dialog-content>Are you sure you want to delete the item?</div>
+<div mat-dialog-actions class="!flex !justify-center">
+  <button
+    mat-raised-button
+    class="bg-black text-white py-2 px-6 m-4 uppercase text-2xl text-center rounded max-[600px]:text-xs"
+    mat-dialog-close
+    (click)="confirmDelete()"
+  >
+    Yes
+  </button>
+  <button
+    mat-raised-button
+    class="bg-black text-white py-2 px-6 m-4 uppercase text-2xl text-center rounded max-[600px]:text-xs"
+    mat-dialog-close
+  >
+    Cancel
+  </button>
+</div>

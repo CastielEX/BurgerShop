@@ -1,0 +1,82 @@
+.burgers {
+  background-color: #fff;
+  line-height: 1;
+}
+.title {
+  background-color: black;
+  color: #c77600 !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  width: 23%;
+}
+.burgers__item,
+.burgers__titles {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1rem 0 4rem;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: #000000;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+.burgers__titles {
+  margin-bottom: 1rem !important;
+  background-color: white !important;
+  box-shadow: none !important;
+}
+.burgers__item div,
+.burgers__titles div {
+  border-radius: 1rem;
+  min-width: 120px;
+  padding: 1rem;
+  color: black;
+}
+.burgers_burger-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+.burgers_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #c77600 !important;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  text-shadow: #c77600 0 7px 12px;
+}
+.burgers_ingredients {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.burgers_ingredients span {
+  padding: 10px;
+  margin: 5px;
+  background-color: #c77600;
+  border-radius: 5px;
+  box-shadow: #c77600 0 16px 83px;
+}
+.burgers_buttons {
+  width: 100%;
+  margin: 2rem 0rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.mat-icon {
+  transform: scale(1.5);
+  margin: 0.5rem;
+  color: #c77600;
+}
+.add-button {
+  .mat-icon {
+    color: #c77600;
+  }
+}
+.mob-ingredients {
+  background-color: #c77600;
+}

@@ -1,0 +1,18 @@
+<div class="flex relative" *ngFor="let sauce of burgerConstruct.topSauces">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Top Sauce</mat-label>
+      <mat-select [(value)]="sauce.name" (valueChange)="changeSauce(sauce.index, $event)">
+        <mat-option>-</mat-option>
+        <mat-option [value]="ingredient.name" *ngFor="let ingredient of ingredients"
+          >{{ ingredient.name | titlecase }} ({{ ingredient.price }}lei)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="absolute top-3.5 left-56" *ngIf="sauce.index > 1">
+    <button class="deleteItem" (click)="deleteSauce(sauce.index)">
+      <img src="../../../../assets/images/cancel.png" alt="" />
+    </button>
+  </div>
+</div>

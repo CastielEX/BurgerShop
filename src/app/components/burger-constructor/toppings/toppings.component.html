@@ -1,0 +1,18 @@
+<div class="flex relative" *ngFor="let topping of burgerConstruct.toppings">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Toppings</mat-label>
+      <mat-select [(value)]="topping.name" (valueChange)="changeTopping(topping.index, $event)">
+        <mat-option>-</mat-option>
+        <mat-option [value]="ingredient.name" *ngFor="let ingredient of ingredients"
+          >{{ ingredient.name | titlecase }} ({{ ingredient.price }}lei)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="absolute top-3.5 left-56" *ngIf="topping.index > 1">
+    <button class="deleteItem" (click)="deleteTopping(topping.index)">
+      <img src="../../../../assets/images/cancel.png" alt="" />
+    </button>
+  </div>
+</div>

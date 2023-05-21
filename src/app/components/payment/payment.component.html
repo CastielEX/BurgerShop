@@ -1,0 +1,154 @@
+<div class="m-0 text-white bg-[#252121]">
+  <div class="p-20 m-0 align-middle">
+    <div class="pl-10">
+      <button (click)="cancelTransaction()" class="flex font-semibold text-white text-lg mt-10">
+        <svg class="fill-current mr-2 text-white w-4" viewBox="0 0 448 512">
+          <path
+            d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
+          />
+        </svg>
+        Cancel Transaction
+      </button>
+    </div>
+    <div class="border m-10">
+      <div class="w-full mx-auto rounded-lg p-5 text-gray-700 interior-border">
+        <form [formGroup]="paymentForm">
+          <div class="mb-10">
+            <span class="flex justify-center text-white font-bold text-2xl">SECURED PAYMENT SYSTEM</span>
+          </div>
+          <div class="mb-3 flex -mx-2">
+            <div class="px-2">
+              <label for="type1" class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio h-5 w-5" name="type" id="type1" checked />
+                <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-3" />
+              </label>
+            </div>
+            <div class="px-2">
+              <label for="type2" class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio h-5 w-5" name="type" id="type2" />
+                <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" class="h-8 ml-3" />
+              </label>
+            </div>
+          </div>
+          <hr class="cart-del-line" />
+          <div class="mb-3">
+            <label class="font-bold text-white text-sm mb-2 ml-1">Name on card</label>
+            <div>
+              <input
+                formControlName="name"
+                class="bg-transparent w-full px-3 py-2 mb-1 border-2 border-white text-white rounded-md focus:outline-none"
+                placeholder="John Smith"
+                type="text"
+              />
+            </div>
+            <span
+              class="form-error"
+              *ngIf="this.paymentForm.get('name')?.invalid && this.paymentForm.get('name')?.touched"
+              >Please enter a valid name!</span
+            >
+          </div>
+          <div class="mb-3">
+            <label class="font-bold text-sm mb-2 ml-1 text-white">Card number</label>
+            <div>
+              <input
+                formControlName="card"
+                id="bg-transparent input-field"
+                class="bg-transparent w-full px-3 py-2 mb-1 border-2 border-white text-white rounded-md focus:outline-none"
+                placeholder="0000-0000-0000-0000"
+              />
+            </div>
+            <span
+              class="form-error"
+              *ngIf="this.paymentForm.get('card')?.invalid && this.paymentForm.get('card')?.touched"
+              >Please enter a valid card number/format! ex. 0000-0000-0000-0000</span
+            >
+          </div>
+
+          <div class="mb-3 -mx-2 flex items-end">
+            <div class="px-2 w-1/2">
+              <label class="font-bold text-sm mb-2 ml-1 text-white">Expiration date</label>
+              <div>
+                <select
+                  formControlName="month"
+                  class="form-select w-full px-3 py-2 mb-1 solid border-2 border-white text-white rounded-md focus:outline-none"
+                >
+                  <option selected>Choose month</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+                </select>
+              </div>
+            </div>
+            <div class="px-2 w-1/2">
+              <select
+                formControlName="year"
+                class="form-select w-full px-3 py-2 mb-1 border-2 border-white text-white solid rounded-md"
+              >
+                <option selected>Choose year</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+              </select>
+            </div>
+          </div>
+          <span
+            class="form-error text-base"
+            *ngIf="this.paymentForm.get('month')?.invalid && this.paymentForm.get('month')?.touched"
+            >Please select an expiration month! ex. December
+          </span>
+          <br />
+          <span
+            class="form-error text-base"
+            *ngIf="this.paymentForm.get('year')?.invalid && this.paymentForm.get('year')?.touched"
+            >Please select an expiration year! ex. 2024
+          </span>
+          <div class="mb-10">
+            <label class="font-bold text-sm mb-2 ml-1 text-white">Security code</label>
+            <div>
+              <input
+                formControlName="code"
+                maxlength="3"
+                [type]="'password'"
+                class="text-white w-32 px-3 py-2 mb-1 border-2 bg-transparent rounded-md"
+                placeholder="000"
+                type="text"
+              />
+            </div>
+            <span
+              class="form-error"
+              *ngIf="this.paymentForm.get('code')?.invalid && this.paymentForm.get('code')?.touched"
+              >Please enter a valid code number!</span
+            >
+          </div>
+
+          <hr class="cart-del-line" />
+          <div class="flex flex-col">
+            <button
+              id="btnCheckout"
+              (click)="payNow()"
+              class="hover:bg-yellow-600 bordershadowmax text-white font-bold py-3 px-20 rounded border uppercase"
+            >
+              Pay Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

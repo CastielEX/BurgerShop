@@ -1,0 +1,65 @@
+<div class="p-5 md:p-16 burgers w-full">
+  <div class="hidden lg:flex uppercase burgers__titles px-16">
+    <div class="title">Name</div>
+    <div class="title">Image</div>
+    <div class="title">Default Ingredients List</div>
+    <div class="title">Optional Ingredients List</div>
+  </div>
+
+  <div
+    class="burgers__item items-center block p-5 md:px-16 md:py-10 lg:flex"
+    *ngFor="let burger of _burgersService.burgers"
+  >
+    <div class="burgers_name w-full lg:w-[23%] text-xl md:text-5xl">
+      {{ burger.name | titlecase }}
+    </div>
+    <div class="burgers_burger-image w-full lg:w-[23%]">
+      <img src="{{ burger.url }}" alt="" />
+    </div>
+    <div class="hidden lg:flex burgers_ingredients w-full lg:w-[23%]">
+      <span *ngFor="let baseIngredient of burger.baseIngredients">{{ baseIngredient.name | titlecase }}</span>
+    </div>
+    <div class="flex justify-center lg:hidden w-full bg-white mob-ingredients">
+      <div class="text-xl">
+        Base Ingredients:
+        <div>
+          <span class="text-xs" *ngFor="let baseIngredient of burger.baseIngredients; let i = index">
+            {{ baseIngredient.name | titlecase }}
+            <span *ngIf="burger.baseIngredients.length - 1 !== i">, </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="hidden lg:flex burgers_ingredients w-full lg:w-[23%]">
+      <span *ngFor="let optionalIngredient of burger.optionalIngredients">{{
+        optionalIngredient.name | titlecase
+      }}</span>
+      <span *ngIf="burger.optionalIngredients === '' || burger.optionalIngredients.length === 0">No ingredients</span>
+    </div>
+    <div class="flex justify-center mt-5 lg:hidden w-full bg-white mob-ingredients">
+      <div class="text-xl">
+        Optional Ingredients:
+        <div>
+          <span class="text-xs" *ngIf="burger.optionalIngredients === '' || burger.optionalIngredients.length === 0"
+            >No ingredients</span
+          >
+          <span class="text-xs" *ngFor="let optionalIngredient of burger.optionalIngredients; let i = index">
+            {{ optionalIngredient.name | titlecase }}
+            <span *ngIf="burger.optionalIngredients.length - 1 !== i">, </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="burgers_buttons">
+      <button (click)="openEdit(burger.id)"><mat-icon>edit</mat-icon></button>
+      <button (click)="deleteDialog(burger.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </footer>
+  </div>
+
+  <button class="fixed bottom-6 right-6 add-button" mat-button (click)="openDialog()">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+</div>

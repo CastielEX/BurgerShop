@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>CREATE A BURGER</h1>
+<div mat-dialog-content>
+  <form [formGroup]="burgerForm">
+    <div class="w-80 mb-5 max-[600px]:!w-64">
+      <label class="block">Name</label>
+      <input
+        type="text"
+        placeholder="Burger VIP"
+        formControlName="name"
+        class="w-full p-2 border border-solid border-[rgba(143,143,143,0.89)]"
+      />
+      <div class="text-red m-2.5 text-left" *ngIf="burgerForm.get('name')?.invalid && burgerForm.get('name')?.touched">
+        <small *ngIf="burgerForm.get('name')?.errors?.['required']">Field can not be empty</small>
+      </div>
+    </div>
+    <div>
+      <div class="w-80 max-[600px]:!w-64">
+        <div>
+          <label class="">Default ingredients</label>
+        </div>
+        <ng-select
+          formControlName="baseIngredients"
+          style="font-family: roboto"
+          [items]="allIngredients"
+          bindLabel="name"
+          placeholder="Select Ingredient"
+          appendTo="body"
+          [multiple]="true"
+        >
+        </ng-select>
+        <div
+          class="text-red m-2.5 text-left"
+          *ngIf="burgerForm.get('baseIngredients')?.invalid && burgerForm.get('baseIngredients')?.touched"
+        >
+          <small *ngIf="burgerForm.get('baseIngredients')?.errors?.['required']">Field can not be empty</small>
+        </div>
+      </div>
+      <div>
+        <label class="">Optional ingredients</label>
+      </div>
+      <div class="w-80 max-[600px]:!w-64">
+        <ng-select
+          formControlName="optionalIngredients"
+          style="font-family: roboto"
+          [items]="allIngredients"
+          bindLabel="name"
+          placeholder="Select Ingredient"
+          appendTo="body"
+          [multiple]="true"
+        >
+        </ng-select>
+      </div>
+      <div class="max-[600px]:w-64">
+        <input
+          type="file"
+          (change)="getPicture($event)"
+          formControlName="url"
+          class="w-full p-2 border border-solid border-[rgba(143,143,143,0.89)]"
+        />
+        <div class="text-red m-2.5 text-left" *ngIf="burgerForm.get('url')?.invalid && burgerForm.get('url')?.touched">
+          <small *ngIf="burgerForm.get('url')?.errors?.['required']">Field can not be empty</small>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="!my-0 !mx-auto !flex !justify-center">
+  <button
+    mat-raised-button
+    color="primary"
+    class="bg-[#3f51b5] text-white uppercase text-2xl text-center py-1.5 rounded px-2.5"
+    mat-dialog-close
+    [disabled]="burgerForm.invalid"
+    (click)="createBurger(burgerForm.value)"
+  >
+    Create
+  </button>
+</div>

@@ -1,0 +1,229 @@
+<div class="m-0 text-white bg-[#252121]">
+  <div>
+    <div class="px-20 pt-5">
+      <button (click)="backToCart()" class="flex font-semibold text-white text-lg mt-10">
+        <svg class="fill-current mr-2 text-white w-4" viewBox="0 0 448 512">
+          <path
+            d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
+          />
+        </svg>
+        Back to Cart
+      </button>
+      <br />
+      <div class="p-7 border">
+        <div class="grid grid-cols-2 gap-2 m-0 font-bold text-lg">
+          <div class="relative p-3">
+            <div class="p-2 text-center">
+              <span>Order Summary</span> <br />
+              <span>Check your burgers and select a suitable delivery method.</span>
+            </div>
+            <br />
+            <div>
+              <div *ngFor="let burger of total">
+                <div class="flex p-7 hover:bg-yellow-600 bordershadow">
+                  <div class="borderBurger w-2/4">
+                    <img class="" src="{{ burger.url }}" alt="" />
+                  </div>
+                  <div class="relative pl-5">
+                    <span class="text-xl">{{ burger.name }}</span> <br />
+                    <span *ngFor="let burgername of burger.optional" class="text-sm font-semibold"
+                      ><li>
+                        <ul>
+                          {{
+                            burgername.name
+                          }}
+                          -
+                          {{
+                            burgername.price
+                          }}
+                          LEI
+                        </ul>
+                      </li></span
+                    >
+                    <span class="text-sm">Quantity : {{ burger.quantity }}</span> <br />
+                    <span class="text-lg font-bold">{{ burger.shownPrice * burger.quantity }} Lei</span>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <hr class="cart-del-line" />
+              <label class="text-sm">Please choose a delivery option!</label>
+
+              <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                <input
+                  id="border-radio-3"
+                  type="radio"
+                  value=""
+                  name="141"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="border-radio-3"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Pick up it from our establishment : Address: Strada Ierusalim 7, Chișinău</label
+                >
+              </div>
+              <br />
+              <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                <input
+                  checked
+                  id="border-radio-4"
+                  type="radio"
+                  value=""
+                  name="141"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="border-radio-4"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >FREE Delivery: 40m - 60m</label
+                >
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="checkoutForm">
+            <div class="bg-[#14141433] p-3">
+              <div class="p-2 text-center">
+                <span>Payment Details</span> <br />
+                <span>Complete your order by providing your credentials.</span>
+              </div>
+              <br />
+              <div class="relative">
+                <input
+                  formControlName="email"
+                  type="email"
+                  id="default_outlined1"
+                  class="labelBorder block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-white appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  for="default_outlined1"
+                  class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-slate-900 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >Email</label
+                >
+              </div>
+              <span
+                class="form-error text-base"
+                *ngIf="this.checkoutForm.get('email')?.invalid && this.checkoutForm.get('email')?.touched"
+                >Please enter a valid email! ex. your.email@gmail.com, your.email@mail.com</span
+              >
+              <br />
+              <div class="relative">
+                <input
+                  formControlName="phone"
+                  type="text"
+                  id="default_outlined2"
+                  class="labelBorder block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  for="default_outlined2"
+                  class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-slate-900 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >Phone Number</label
+                >
+              </div>
+              <span
+                class="form-error text-base"
+                *ngIf="this.checkoutForm.get('phone')?.invalid && this.checkoutForm.get('phone')?.touched"
+                >Please enter a valid phone number! ex. 69370541</span
+              >
+              <br />
+              <label class="text-sm text-white">Select your Billing Address</label>
+              <select
+                formControlName="street"
+                id="countries"
+                class="labelBorder border-transparent solid text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-transparent dark:border-transparent dark:text-white"
+              >
+                <option>str. Stefan Cel Mare</option>
+                <option>str. Alba Iulia</option>
+                <option>str. Ion Creanga</option>
+                <option>str. Studentilor</option>
+              </select>
+              <span
+                class="form-error text-base"
+                *ngIf="this.checkoutForm.get('street')?.invalid && this.checkoutForm.get('street')?.touched"
+                >Please select a street! ex. str. Stefan Cel Mare
+              </span>
+
+              <br />
+              <div class="relative">
+                <input
+                  formControlName="address"
+                  type="text"
+                  id="default_outlined4"
+                  class="labelBorder block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  for="default_outlined4"
+                  class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-slate-900 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >House/Office Number</label
+                >
+              </div>
+              <span
+                class="form-error text-base"
+                *ngIf="this.checkoutForm.get('address')?.invalid && this.checkoutForm.get('address')?.touched"
+                >Please enter a house/office number! ex. 12/1</span
+              >
+              <br />
+              <label class="block text-base font-medium text-white">Choose payment method</label>
+              <div class="flex items-center pl-4 border border-gray-600 rounded dark:border-gray-600">
+                <input
+                  value="Credit Card"
+                  name="group1"
+                  (click)="toggleValueTrue()"
+                  id="bordered-radio-1"
+                  type="radio"
+                  name="bordered-radio"
+                  class="w-4 h-4 text-gray-600 bg-gray-600 border-gray-600 focus:ring-gray-700 dark:focus:ring-gray-700 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="bordered-radio-1"
+                  class="w-full py-4 ml-2 text-sm font-semibold text-slate-900 dark:text-white"
+                  >Credit Card</label
+                >
+              </div>
+              <br />
+              <div class="flex items-center pl-4 border border-gray-600 rounded dark:border-gray-700">
+                <input
+                  checked
+                  value="Cash"
+                  name="group1"
+                  (click)="toggleValueFalse()"
+                  id="bordered-radio-2"
+                  type="radio"
+                  name="bordered-radio"
+                  class="w-4 h-4 text-gray-600 bg-gray-600 border-gray-600 focus:ring-gra dark:focus:ring-gray-700 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="bordered-radio-2"
+                  class="w-full py-4 ml-2 text-sm font-semibold text-slate-900 dark:text-white"
+                  >Cash</label
+                >
+              </div>
+              <hr class="cart-del-line" />
+              <span>Subtotal : {{ totalCost() }} Lei</span>
+              <br />
+              <span>Delivery : FREE</span>
+              <hr class="cart-del-line" />
+              <span>Total : {{ totalCost() }} Lei</span>
+              <hr class="cart-del-line" />
+              <div class="flex flex-col">
+                <button
+                  type="submit"
+                  id="btnCheckout"
+                  (click)="placeOrder(checkoutForm.value)"
+                  class="hover:bg-yellow-600 bordershadowmax text-white font-bold py-3 px-20 rounded border"
+                >
+                  PAYMENT
+                </button>
+              </div>
+              <span class="form-error" *ngIf="">Please comple the form above!</span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="pb-10"></div>
+    </div>
+  </div>
+</div>

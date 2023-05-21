@@ -1,0 +1,18 @@
+<div class="flex relative" *ngFor="let cheese of burgerConstruct.cheeses">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Cheese</mat-label>
+      <mat-select [(value)]="cheese.name" (valueChange)="changeCheese(cheese.index, $event)">
+        <mat-option>-</mat-option>
+        <mat-option [value]="ingredient.name" *ngFor="let ingredient of ingredients"
+          >{{ ingredient.name | titlecase }} ({{ ingredient.price }}lei)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="absolute top-3.5 left-56" *ngIf="cheese.index > 1">
+    <button class="deleteItem" (click)="deleteCheese(cheese.index)">
+      <img src="../../../../assets/images/cancel.png" alt="" />
+    </button>
+  </div>
+</div>

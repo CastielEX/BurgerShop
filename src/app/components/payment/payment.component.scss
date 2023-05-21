@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(37, 33, 33);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.form-error {
+  color: red;
+}
+
+.cart-del-line {
+  height: 2px;
+  display: block;
+  max-width: 870px;
+  margin: 20px auto;
+  background: #f8bb46;
+  border: none;
+}
+
+.interior-border {
+  max-width: 500px;
+}
+
+.border {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  width: auto;
+}
+
+.bordershadow:hover {
+  box-shadow: 0 0 6px rgba(232, 173, 10, 1);
+}
+
+.bordershadowmax:hover {
+  box-shadow: 0 0 12px rgba(232, 173, 10, 1);
+}
+
+select.solid {
+  background: rgb(37, 33, 33);
+}
